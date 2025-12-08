@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane prefHeight="768.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.emsi.subtracker.views.AnalyticsController">
+   
+   <!-- SIDEBAR -->
+   <left>
+      <VBox prefWidth="250.0" styleClass="sidebar" BorderPane.alignment="CENTER">
+         <children>
+            <HBox alignment="CENTER_LEFT" spacing="15">
+               <padding>
+                  <Insets left="20.0" top="30.0" bottom="30.0" />
+               </padding>
+               <children>
+                  <javafx.scene.image.ImageView fitHeight="50.0" fitWidth="50.0" preserveRatio="true">
+                     <image>
+                        <javafx.scene.image.Image url="@../images/logo.jpg" />
+                     </image>
+                     <clip>
+                        <javafx.scene.shape.Circle centerX="25" centerY="25" radius="25" />
+                     </clip>
+                  </javafx.scene.image.ImageView>
+                  <Label styleClass="app-title" style="-fx-padding: 0;" text="SubTracker" />
+               </children>
+            </HBox>
+            <VBox spacing="10.0" VBox.vgrow="ALWAYS">
+               <children>
+                  <Button maxWidth="Infinity" mnemonicParsing="false" onAction="#goToDashboard" styleClass="nav-button" text="Dashboard" />
+                  <Button maxWidth="Infinity" mnemonicParsing="false" styleClass="nav-button, nav-button-active" text="Analytics" />
+                  <Button maxWidth="Infinity" mnemonicParsing="false" styleClass="nav-button" text="Paramètres" />
+               </children>
+               <padding>
+                  <Insets top="20.0" />
+               </padding>
+            </VBox>
+            <Label text="v1.0.2" textFill="#555555" VBox.vgrow="NEVER">
+               <padding>
+                  <Insets bottom="20.0" left="20.0" />
+               </padding>
+            </Label>
+         </children>
+      </VBox>
+   </left>
+   
+   <!-- MAIN CONTENT -->
+   <center>
+      <VBox spacing="30.0" style="-fx-background-color: #121212;" BorderPane.alignment="CENTER">
+         <padding>
+            <Insets bottom="40.0" left="40.0" right="40.0" top="40.0" />
+         </padding>
+         
+         <!-- HEADER -->
+         <HBox alignment="CENTER_LEFT" spacing="20.0">
+            <children>
+               <VBox>
+                  <children>
+                     <Label style="-fx-text-fill: white; -fx-font-size: 24px; -fx-font-weight: bold;" text="Statistiques" />
+                     <Label style="-fx-text-fill: #808080;" text="Analysez la répartition de vos dépenses." />
+                  </children>
+               </VBox>
+               <Region HBox.hgrow="ALWAYS" />
+               <TextField promptText="Rechercher..." styleClass="search-field" prefWidth="300.0" />
+            </children>
+         </HBox>
+         
+         <!-- CHARTS ROW -->
+         <HBox spacing="30.0" VBox.vgrow="ALWAYS">
+            <children>
+               <!-- PIE CHART CARD -->
+               <VBox styleClass="card" HBox.hgrow="ALWAYS">
+                  <padding>
+                     <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                  </padding>
+                  <children>
+                     <Label styleClass="card-title" text="Répartition par Catégorie" />
+                     <PieChart fx:id="pieChartCategories" labelsVisible="true" legendSide="BOTTOM" startAngle="90" VBox.vgrow="ALWAYS" />
+                  </children>
+               </VBox>
+               
+               <!-- BAR CHART CARD -->
+               <VBox styleClass="card" HBox.hgrow="ALWAYS">
+                  <padding>
+                     <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                  </padding>
+                  <children>
+                     <Label styleClass="card-title" text="Coût Mensuel par Service" />
+                     <BarChart fx:id="barChartCosts" legendVisible="false" VBox.vgrow="ALWAYS">
+                       <xAxis>
+                         <CategoryAxis label="Service" side="BOTTOM" tickLabelFill="WHITE" />
+                       </xAxis>
+                       <yAxis>
+                         <NumberAxis label="Prix (DH)" side="LEFT" tickLabelFill="WHITE" />
+                       </yAxis>
+                     </BarChart>
+                  </children>
+               </VBox>
+            </children>
+         </HBox>
+         
+      </VBox>
+   </center>
+   
+</BorderPane>

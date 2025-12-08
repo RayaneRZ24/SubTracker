@@ -1,0 +1,118 @@
+/* style.css - Inspired by SubscriptionTracker Reference */
+
+/* ================== GLOBAL STYLES (Dark Mode) ================== */
+
+.root {
+    -fx-background-color: #1a1a1a;
+    -fx-font-family: "Segoe UI", "Arial", sans-serif; /* Using Segoe UI for windows native feel */
+}
+.label {
+    -fx-text-fill: #e0e0e0;
+}
+.title-label {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+}
+
+/* ================== HEADER & SEARCH FIELD ================== */
+
+.text-field {
+    -fx-background-color: #2e2e2e;
+    -fx-background-radius: 15;
+    -fx-border-color: transparent;
+    -fx-text-fill: #e0e0e0;
+    -fx-prompt-text-fill: #999999;
+    -fx-padding: 8px 15px;
+}
+
+/* ================== SUMMARY PANEL (Right Side) ================== */
+
+.summary-panel {
+    -fx-background-color: #1f1f1f;
+    -fx-background-radius: 12;
+    -fx-border-color: #333333;
+    -fx-border-width: 1px;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 10, 0, 0, 5);
+}
+.total-label {
+    -fx-text-fill: #2ecc71; /* Green color for money */
+    -fx-font-weight: bold;
+    -fx-font-size: 36px;
+}
+
+/* ================== TABLE VIEW STYLING ================== */
+
+.table-view {
+    -fx-background-color: #2e2e2e;
+    -fx-background-radius: 10;
+    -fx-border-radius: 10;
+    -fx-border-color: transparent;
+}
+
+/* Column Headers */
+.table-view .column-header-background {
+    -fx-background-color: #2e2e2e;
+    -fx-background-radius: 10 10 0 0;
+}
+.table-view .column-header {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+}
+.table-view .column-header .label {
+    -fx-text-fill: #999999;
+    -fx-font-weight: bold;
+    -fx-font-size: 13px;
+}
+
+/* Table Rows */
+.table-row-cell {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-padding: 5px 0;
+}
+.table-row-cell:odd {
+    -fx-background-color: #353535;
+}
+.table-row-cell:even {
+    -fx-background-color: #2e2e2e;
+}
+.table-row-cell:filled:hover {
+    -fx-background-color: #444444;
+}
+.table-cell {
+    -fx-border-color: transparent;
+    -fx-text-fill: #e0e0e0;
+    -fx-alignment: CENTER-LEFT;
+    -fx-font-size: 14px;
+}
+
+/* ================== BUTTONS ================== */
+
+.button {
+    -fx-background-color: #3498db;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 20;
+    -fx-padding: 8 20;
+    -fx-cursor: hand;
+}
+.button:hover {
+    -fx-background-color: #2980b9;
+    -fx-effect: dropshadow(gaussian, rgba(52, 152, 219, 0.4), 10, 0, 0, 2);
+}
+.button-danger {
+    -fx-background-color: #e74c3c;
+}
+.button-danger:hover {
+    -fx-background-color: #c0392b;
+    -fx-effect: dropshadow(gaussian, rgba(231, 76, 60, 0.4), 10, 0, 0, 2);
+}
+.scroll-bar:vertical .thumb {
+    -fx-background-color: #555;
+    -fx-background-radius: 5;
+}
+.scroll-bar:horizontal .thumb {
+    -fx-background-color: #555;
+    -fx-background-radius: 5;
+}

@@ -1,0 +1,316 @@
+/* styles_v2.css - Premium FinTech Dark Theme */
+
+/* ================== VARIABLES & ROOT ================== */
+.root {
+    -fx-background-color: #121212;
+    /* Deep Dark Background */
+    -fx-font-family: "Segoe UI", "Roboto", "Helvetica", "Arial", sans-serif;
+    -fx-font-size: 14px;
+}
+
+/* ================== SIDEBAR ================== */
+.sidebar {
+    -fx-background-color: #1E1E1E;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.4), 10, 0, 0, 0);
+}
+
+.app-title {
+    -fx-text-fill: #FFFFFF;
+    -fx-font-size: 22px;
+    -fx-font-weight: bold;
+    -fx-padding: 30 0 30 20;
+}
+
+.nav-button {
+    -fx-background-color: transparent;
+    -fx-text-fill: #A0A0A0;
+    -fx-alignment: CENTER_LEFT;
+    -fx-font-size: 16px;
+    -fx-padding: 15 20;
+    -fx-cursor: hand;
+    -fx-border-color: transparent transparent transparent transparent;
+    -fx-border-width: 0 0 0 3;
+}
+
+.nav-button:hover {
+    -fx-background-color: #2C2C2C;
+    -fx-text-fill: #FFFFFF;
+}
+
+.nav-button-active {
+    -fx-background-color: linear-gradient(to right, rgba(108, 99, 255, 0.1), transparent);
+    -fx-text-fill: #6C63FF;
+    /* Primary Accent */
+    -fx-border-color: transparent transparent transparent #6C63FF;
+}
+
+/* ================== CARDS ================== */
+.card {
+    -fx-background-color: #1E1E1E;
+    -fx-background-radius: 15;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.2), 10, 0, 0, 5);
+}
+
+.card-title {
+    -fx-text-fill: #808080;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+}
+
+.card-value {
+    -fx-text-fill: #FFFFFF;
+    -fx-font-size: 32px;
+    -fx-font-weight: bold;
+}
+
+.card-value-green {
+    -fx-text-fill: linear-gradient(to right, #03DAC6, #018786);
+}
+
+/* ================== TEXT FIELDS ================== */
+.search-field {
+    -fx-background-color: #2C2C2C;
+    -fx-text-fill: white;
+    -fx-background-radius: 20;
+    -fx-padding: 10 20;
+    -fx-prompt-text-fill: #808080;
+}
+
+.search-field:focused {
+    -fx-background-color: #383838;
+}
+
+/* ================== BUTTONS ================== */
+.btn-primary {
+    -fx-background-color: linear-gradient(to right, #6C63FF, #5a52d5);
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 20;
+    -fx-padding: 10 25;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(three-pass-box, rgba(108, 99, 255, 0.4), 10, 0, 0, 3);
+}
+
+.btn-primary:hover {
+    -fx-background-color: linear-gradient(to right, #7e76ff, #6C63FF);
+}
+
+.btn-danger {
+    -fx-background-color: transparent;
+    -fx-text-fill: #CF6679;
+    -fx-border-color: #CF6679;
+    -fx-border-radius: 20;
+    -fx-background-radius: 20;
+    -fx-padding: 8 20;
+    -fx-cursor: hand;
+}
+
+.btn-danger:hover {
+    -fx-background-color: rgba(207, 102, 121, 0.1);
+}
+
+/* ================== TABLE VIEW ================== */
+.table-view {
+    -fx-background-color: transparent;
+    -fx-background-radius: 10;
+}
+
+.table-view .column-header-background {
+    -fx-background-color: transparent;
+}
+
+.table-view .column-header {
+    -fx-background-color: transparent;
+    -fx-border-width: 0 0 2 0;
+    -fx-border-color: #333333;
+}
+
+.table-view .column-header .label {
+    -fx-text-fill: #808080;
+    -fx-font-weight: bold;
+    -fx-font-size: 13px;
+}
+
+.table-row-cell {
+    -fx-background-color: transparent;
+    -fx-border-width: 0 0 1 0;
+    -fx-border-color: #2C2C2C;
+    -fx-padding: 5 0;
+}
+
+.table-row-cell:hover {
+    -fx-background-color: #252525;
+}
+
+.table-cell {
+    -fx-text-fill: white;
+    -fx-alignment: CENTER_LEFT;
+}
+
+.scroll-bar:vertical .thumb,
+.scroll-bar:horizontal .thumb {
+    -fx-background-color: #444;
+    -fx-background-radius: 5;
+}
+
+.scroll-bar:vertical .track,
+.scroll-bar:horizontal .track {
+    -fx-background-color: transparent;
+}
+
+/* ================== SUBSCRIPTION CARDS ================== */
+.sub-card {
+    -fx-background-color: #2D2D2D;
+    -fx-background-radius: 20;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.3), 10, 0, 0, 5);
+    -fx-cursor: hand;
+    -fx-padding: 20;
+    -fx-min-width: 220;
+    -fx-max-width: 220;
+    -fx-min-height: 160;
+}
+
+.sub-card:hover {
+    -fx-scale-x: 1.05;
+    -fx-scale-y: 1.05;
+}
+
+.sub-card-title {
+    -fx-text-fill: white;
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+}
+
+.sub-card-price {
+    -fx-text-fill: white;
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+}
+
+.sub-card-date {
+    -fx-text-fill: rgba(255, 255, 255, 0.7);
+    -fx-font-size: 12px;
+}
+
+/* BRAND COLORS */
+.brand-netflix {
+    -fx-background-color: linear-gradient(to bottom right, #E50914, #222);
+}
+
+.brand-spotify {
+    -fx-background-color: linear-gradient(to bottom right, #1DB954, #191414);
+}
+
+.brand-amazon {
+    -fx-background-color: linear-gradient(to bottom right, #00A8E1, #000);
+}
+
+.brand-apple {
+    -fx-background-color: linear-gradient(to bottom right, #555555, #000);
+}
+
+.brand-adobe {
+    -fx-background-color: linear-gradient(to bottom right, #FF0000, #330000);
+}
+
+.brand-basicfit {
+    -fx-background-color: linear-gradient(to bottom right, #FE7000, #222);
+}
+
+.brand-default {
+    -fx-background-color: linear-gradient(to bottom right, #444, #1a1a1a);
+}
+
+/* ================== CHARTS STYLING ================== */
+
+/* General Chart Background */
+.chart {
+    -fx-padding: 10px;
+    -fx-background-color: transparent;
+}
+
+.chart-content {
+    -fx-padding: 10px;
+}
+
+.chart-plot-background {
+    -fx-background-color: transparent;
+}
+
+.chart-vertical-grid-lines,
+.chart-horizontal-grid-lines {
+    -fx-stroke: #444444;
+    -fx-stroke-dash-array: 0.5 4.0;
+}
+
+/* Axis Styling */
+.axis {
+    -fx-tick-label-fill: #b0b0b0;
+    -fx-tick-label-font-size: 10px;
+}
+
+.axis:left {
+    -fx-border-color: transparent #444444 transparent transparent;
+}
+
+.axis:bottom {
+    -fx-border-color: #444444 transparent transparent transparent;
+}
+
+.axis-label {
+    -fx-text-fill: #b0b0b0;
+    -fx-font-size: 12px;
+}
+
+/* Legend Styling */
+.chart-legend {
+    -fx-background-color: transparent;
+    -fx-padding: 10px;
+}
+
+.chart-legend-item {
+    -fx-text-fill: #e0e0e0;
+}
+
+.chart-legend-item-symbol {
+    -fx-background-radius: 50%;
+}
+
+/* PieChart Slices (Custom Palette) */
+.default-color0.chart-pie {
+    -fx-pie-color: #6C63FF;
+}
+
+/* Primary Purple */
+.default-color1.chart-pie {
+    -fx-pie-color: #03DAC6;
+}
+
+/* Teal */
+.default-color2.chart-pie {
+    -fx-pie-color: #CF6679;
+}
+
+/* Red */
+.default-color3.chart-pie {
+    -fx-pie-color: #FFB74D;
+}
+
+/* Orange */
+.default-color4.chart-pie {
+    -fx-pie-color: #BB86FC;
+}
+
+/* Light Purple */
+
+.chart-pie-label {
+    -fx-fill: #ffffff;
+    -fx-font-size: 11px;
+}
+
+/* BarChart Bars */
+.chart-bar {
+    -fx-background-color: linear-gradient(to top, #6C63FF, #8b85ff);
+    -fx-background-radius: 5 5 0 0;
+    -fx-effect: dropshadow(three-pass-box, rgba(108, 99, 255, 0.3), 5, 0, 0, 0);
+}

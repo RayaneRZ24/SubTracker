@@ -6,6 +6,8 @@
     /* Deep Dark Background */
     -fx-font-family: "Segoe UI", "Roboto", "Helvetica", "Arial", sans-serif;
     -fx-font-size: 14px;
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;
 }
 
 /* ================== SIDEBAR ================== */
@@ -21,7 +23,8 @@
     -fx-padding: 30 0 30 20;
 }
 
-.nav-button {
+.nav-button,
+.nav-button-active {
     -fx-background-color: transparent;
     -fx-text-fill: #A0A0A0;
     -fx-alignment: CENTER_LEFT;
@@ -37,11 +40,27 @@
     -fx-text-fill: #FFFFFF;
 }
 
+.nav-button:pressed,
+.nav-button:focused {
+    -fx-background-color: #222222;
+    -fx-text-fill: white;
+    -fx-background-insets: 0;
+}
+
 .nav-button-active {
     -fx-background-color: linear-gradient(to right, rgba(108, 99, 255, 0.1), transparent);
     -fx-text-fill: #6C63FF;
     /* Primary Accent */
     -fx-border-color: transparent transparent transparent #6C63FF;
+}
+
+.nav-button-active:hover,
+.nav-button-active:pressed,
+.nav-button-active:focused {
+    -fx-background-color: linear-gradient(to right, rgba(108, 99, 255, 0.2), transparent);
+    -fx-text-fill: #6C63FF;
+    -fx-border-color: transparent transparent transparent #6C63FF;
+    -fx-background-insets: 0;
 }
 
 /* ================== CARDS ================== */
@@ -57,10 +76,14 @@
     -fx-font-weight: bold;
 }
 
-.card-value {
-    -fx-text-fill: #FFFFFF;
+.card-value,
+.card-value-green {
     -fx-font-size: 32px;
     -fx-font-weight: bold;
+}
+
+.card-value {
+    -fx-text-fill: #FFFFFF;
 }
 
 .card-value-green {
@@ -312,5 +335,63 @@
 .chart-bar {
     -fx-background-color: linear-gradient(to top, #6C63FF, #8b85ff);
     -fx-background-radius: 5 5 0 0;
-    -fx-effect: dropshadow(three-pass-box, rgba(108, 99, 255, 0.3), 5, 0, 0, 0);
+}
+
+/* ================== SETTINGS TABS ================== */
+.settings-tab-pane .tab-header-area .tab-header-background {
+    -fx-background-color: transparent;
+}
+
+.settings-tab-pane .tab-header-area {
+    -fx-padding: 0 0 10 0;
+}
+
+.settings-tab-pane .tab {
+    -fx-background-color: transparent;
+    -fx-background-radius: 20;
+    -fx-padding: 8 20;
+    -fx-cursor: hand;
+    -fx-border-width: 0;
+}
+
+.settings-tab-pane .tab:hover {
+    -fx-background-color: rgba(255, 255, 255, 0.05);
+}
+
+.settings-tab-pane .tab:selected {
+    -fx-background-color: #6C63FF;
+    /* Matches btn-primary */
+    -fx-effect: dropshadow(three-pass-box, rgba(108, 99, 255, 0.4), 10, 0, 0, 3);
+}
+
+.settings-tab-pane .tab .tab-label {
+    -fx-text-fill: #A0A0A0;
+    /* Muted text */
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+}
+
+.settings-tab-pane .tab:selected .tab-label {
+    -fx-text-fill: white;
+}
+
+.settings-tab-pane .tab-content-area {
+    -fx-border-width: 0;
+}
+
+.hamburger-button {
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-cursor: hand;
+    -fx-padding: 10;
+    -fx-border-color: #444;
+    -fx-border-width: 1;
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+}
+
+.hamburger-button:hover {
+    -fx-background-color: #333;
 }

@@ -36,9 +36,9 @@
             </HBox>
             <VBox spacing="10.0" VBox.vgrow="ALWAYS">
                <children>
-                  <Button maxWidth="Infinity" mnemonicParsing="false" styleClass="nav-button, nav-button-active" text="Dashboard" />
-                  <Button maxWidth="Infinity" mnemonicParsing="false" onAction="#goToAnalytics" styleClass="nav-button" text="Analytics" />
-                  <Button maxWidth="Infinity" mnemonicParsing="false" styleClass="nav-button" text="Paramètres" />
+                  <Button maxWidth="Infinity" styleClass="nav-button-active" text="Dashboard" />
+                  <Button maxWidth="Infinity" onAction="#goToAnalytics" styleClass="nav-button" text="Analytics" />
+                  <Button maxWidth="Infinity" onAction="#onSettingsClick" styleClass="nav-button" text="Paramètres" />
                </children>
                <padding>
                   <Insets top="20.0" />
@@ -65,13 +65,27 @@
             <children>
                <VBox>
                   <children>
-                     <Label style="-fx-text-fill: white; -fx-font-size: 24px; -fx-font-weight: bold;" text="Bonjour, Othmane" />
+                     <Label fx:id="lblWelcome" style="-fx-text-fill: white; -fx-font-size: 24px; -fx-font-weight: bold;" text="Bonjour, Invité" />
                      <Label style="-fx-text-fill: #808080;" text="Voici un aperçu de vos abonnements aujourd'hui." />
                   </children>
                </VBox>
                <Region HBox.hgrow="ALWAYS" />
-               <TextField promptText="Rechercher..." styleClass="search-field" prefWidth="300.0" />
-               <Button id="btnAdd" mnemonicParsing="false" onAction="#onBtnAjouterClick" styleClass="btn-primary" text="+ Ajouter" />
+               <TextField fx:id="searchField" promptText="Rechercher..." styleClass="search-field" prefWidth="300.0" />
+               <Button id="btnProfile" mnemonicParsing="false" onAction="#onProfileClick" style="-fx-background-color: transparent; -fx-cursor: hand;" >
+                   <graphic>
+                       <javafx.scene.image.ImageView fitHeight="40.0" fitWidth="40.0" preserveRatio="true">
+                           <image>
+                               <javafx.scene.image.Image url="@../images/profilicon.png" />
+                           </image>
+                           <clip>
+                               <javafx.scene.shape.Circle centerX="20" centerY="20" radius="20" />
+                           </clip>
+                       </javafx.scene.image.ImageView>
+                   </graphic>
+                   <tooltip>
+                       <javafx.scene.control.Tooltip text="Mon Profil" />
+                   </tooltip>
+               </Button>
             </children>
          </HBox>
          
@@ -88,7 +102,7 @@
                      <Region prefHeight="10.0" />
                      <HBox alignment="BASELINE_LEFT" spacing="10.0">
                         <children>
-                           <Label fx:id="lblTotalMensuel" styleClass="card-value, card-value-green" text="0.00 DH" />
+                           <Label fx:id="lblTotalMensuel" styleClass="card-value-green" text="0.00 DH" />
                            <Label style="-fx-text-fill: #808080;" text="/ mois" />
                         </children>
                      </HBox>
@@ -106,7 +120,6 @@
                      <HBox alignment="BASELINE_LEFT" spacing="10.0">
                         <children>
                            <Label text="Actifs" styleClass="card-value" />
-                           <!-- Note: We could bind this count in Java later, hardcoded text style for now -->
                         </children>
                      </HBox>
                      <Label text="Gérez vos services en temps réel." style="-fx-text-fill: #666; -fx-padding: 10 0 0 0;" wrapText="true"/>
@@ -122,6 +135,8 @@
                      <children>
                          <Label style="-fx-text-fill: white; -fx-font-size: 18px; -fx-font-weight: bold;" text="Vos Abonnements" />
                          <Region HBox.hgrow="ALWAYS" />
+                         <Button id="btnAdd" mnemonicParsing="false" onAction="#onBtnAjouterClick" styleClass="btn-primary" text="+ Ajouter" />
+                         <Region prefWidth="10.0" />
                          <Button mnemonicParsing="false" onAction="#onBtnSupprimerClick" styleClass="btn-danger" text="Supprimer Sélection" />
                      </children>
                  </HBox>

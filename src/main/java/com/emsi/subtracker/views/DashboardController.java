@@ -26,33 +26,105 @@ import java.util.ResourceBundle;
 public class DashboardController implements Initializable {
 
     @FXML
+    private Label lblWelcome;
+
+    @FXML
     private Label lblTotalMensuel;
 
     @FXML
     private FlowPane cardsContainer;
 
+    @FXML
+    private TextField searchField;
+
     private final SubscriptionService service = new SubscriptionService();
     private final DecimalFormat df = new DecimalFormat("0.00");
     private final DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
+    private List<Abonnement> allSubscriptions;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        refreshDashboard();
+        try {
+            System.out.println("DashboardController initialization started...");
+
+            // Init Search Listener
+            if (searchField != null) {
+                searchField.textProperty().addListener((observable, oldValue, newValue) -> {
+                    filterSubscriptions(newValue);
+                });
+            } else {
+                System.err.println("WARNING: searchField is null in DashboardController");
+            }
+
+            refreshDashboard();
+            System.out.println("DashboardController initialization completed.");
+        } catch (Exception e) {
+            System.err.println("CRITICAL ERROR initializing DashboardController: " + e.getMessage());
+            e.printStackTrace();
+        }
     }
 
     private void refreshDashboard() {
-        List<Abonnement> abonnements = service.getAll();
+        com.emsi.subtracker.models.User currentUser = com.emsi.subtracker.utils.UserSession.getInstance().getUser();
+        if (currentUser != null && lblWelcome != null) {
+            lblWelcome.setText("Bonjour, " + currentUser.getUsername());
+        }
+
+        // Fetch Data once
+        this.allSubscriptions = service.getAll();
 
         // 1. Mise à jour du total
         double total = service.calculerTotalMensuel();
-        lblTotalMensuel.setText(df.format(total) + " DH");
 
-        // 2. Génération des Cartes
+        // Currency Conversion
+        String currency = com.emsi.subtracker.utils.UserSession.getInstance().getCurrency();
+        double displayTotal = convertPrice(total, currency);
+        String symbol = getCurrencySymbol(currency);
+
+        lblTotalMensuel.setText(df.format(displayTotal) + " " + symbol);
+
+        // 2. Initial Display (all or filtered by current text)
+        String currentSearch = (searchField != null) ? searchField.getText() : "";
+        filterSubscriptions(currentSearch);
+    }
+
+    private double convertPrice(double priceInDH, String targetCurrency) {
+        switch (targetCurrency) {
+            case "EUR":
+                return priceInDH * 0.091; // Approx rate
+            case "USD":
+                return priceInDH * 0.099; // Approx rate
+            default:
+                return priceInDH;
+        }
+    }
+
+    private String getCurrencySymbol(String currency) {
+        switch (currency) {
+            case "EUR":
+                return "€";
+            case "USD":
+                return "$";
+            default:
+                return "DH";
+        }
+    }
+
+    private void filterSubscriptions(String query) {
+        if (allSubscriptions == null)
+            return;
+
         cardsContainer.getChildren().clear();
 
-        for (Abonnement sub : abonnements) {
-            VBox card = createSubscriptionCard(sub);
-            cardsContainer.getChildren().add(card);
+        String lowerCaseQuery = (query != null) ? query.toLowerCase() : "";
+
+        for (Abonnement sub : allSubscriptions) {
+            if (lowerCaseQuery.isEmpty()
+                    || (sub.getNom() != null && sub.getNom().toLowerCase().contains(lowerCaseQuery))) {
+                VBox card = createSubscriptionCard(sub);
+                cardsContainer.getChildren().add(card);
+            }
         }
     }
 
@@ -84,7 +156,11 @@ public class DashboardController implements Initializable {
         lblName.setWrapText(true);
 
         // Price
-        Label lblPrice = new Label(sub.getPrix() + " DH");
+        String currency = com.emsi.subtracker.utils.UserSession.getInstance().getCurrency();
+        double displayPrice = convertPrice(sub.getPrix(), currency);
+        String symbol = getCurrencySymbol(currency);
+
+        Label lblPrice = new Label(df.format(displayPrice) + " " + symbol);
         lblPrice.getStyleClass().add("sub-card-price");
 
         // Footer Info (Category & Date)
@@ -129,6 +205,33 @@ public class DashboardController implements Initializable {
     }
 
     @FXML
+    protected void onProfileClick() {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/views/user_profile.fxml"));
+            Scene scene = new Scene(fxmlLoader.load());
+            scene.getStylesheets().add(getClass().getResource("/styles_v2.css").toExternalForm());
+
+            Stage stage = new Stage();
+            stage.setTitle("Mon Profil");
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setScene(scene);
+            stage.showAndWait();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    protected void onSettingsClick() {
+        try {
+            Stage currentStage = (Stage) lblTotalMensuel.getScene().getWindow();
+            SceneManager.switchScene(currentStage, "settings.fxml");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
     protected void onBtnSupprimerClick() {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Info");
@@ -141,7 +244,7 @@ public class DashboardController implements Initializable {
     protected void goToAnalytics() {
         try {
             Stage currentStage = (Stage) lblTotalMensuel.getScene().getWindow();
-            SceneManager.changeScene(currentStage, "analytics.fxml");
+            SceneManager.switchScene(currentStage, "analytics.fxml");
         } catch (Exception e) {
             e.printStackTrace();
         }

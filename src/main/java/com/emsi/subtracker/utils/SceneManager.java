@@ -19,7 +19,7 @@ public class SceneManager {
      * @param stage        La fenêtre principale.
      * @param fxmlFileName Le nom du fichier FXML (ex: "dashboard.fxml").
      */
-    public static void changeScene(Stage stage, String fxmlFileName) {
+    public static void switchScene(Stage stage, String fxmlFileName) throws IOException {
         try {
             // Charge le fichier FXML depuis le dossier resources/views/
             FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/views/" + fxmlFileName));

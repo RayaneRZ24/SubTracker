@@ -11,6 +11,7 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
@@ -79,8 +80,12 @@ public class AddSubscriptionController implements Initializable {
     }
 
     private void retourAuDashboard() {
-        Stage currentStage = (Stage) txtNom.getScene().getWindow();
-        SceneManager.changeScene(currentStage, "dashboard.fxml");
+        try {
+            Stage currentStage = (Stage) txtNom.getScene().getWindow();
+            SceneManager.switchScene(currentStage, "dashboard.fxml");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private boolean validerChamps() {
